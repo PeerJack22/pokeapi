@@ -1,0 +1,159 @@
+.search-result {
+    padding: 15px;
+    
+    ion-card {
+    margin: 10px 0;
+    box-shadow: 0 4px 12px rgba(220, 20, 60, 0.3);
+    background: linear-gradient(135deg, #ffffff 0%, #fff5f5 100%);
+    border: 2px solid #91152e;
+    border-radius: 12px;
+    
+    .pokemon-image {
+        width: 250px;
+        height: 250px;
+        object-fit: contain;
+        display: block;
+        margin: 0 auto;
+        padding: 10px 0;
+    }
+    
+    ion-card-content {
+        h2 {
+        margin: 0 0 15px 0;
+        text-align: center;
+        color: #3a0610;
+        font-weight: bold;
+        font-size: 24px;
+        }
+        
+        p {
+        margin: 10px 0;
+        color: #333;
+        font-size: 14px;
+        
+        strong {
+            color: #912c40;
+            font-weight: bold;
+        }
+
+        .sprites-row {
+        margin-top: 16px;
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10px;
+
+        .sprite-box {
+            border: 1px solid #c53a56;
+            border-radius: 10px;
+            background: #ffffff;
+            padding: 8px;
+            text-align: center;
+
+            p {
+            margin: 0 0 8px 0;
+            font-size: 12px;
+            color: #6d0d20;
+            }
+
+            .sprite-image {
+            width: 10px;
+            height: 10px;
+            }
+        }
+        }
+        }
+        
+        .cry-button-container {
+        margin-top: 20px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        justify-content: center;
+        
+        .cry-button {
+            background: linear-gradient(135deg, #3f030f 0%, #b22c4a 100%);
+            color: white;
+            font-weight: bold;
+            border: none;
+            border-radius: 8px;
+            padding: 10px 20px;
+            font-size: 14px;
+            
+            &:disabled {
+            background: #ccc;
+            color: #999;
+            }
+            
+            &:hover:not(:disabled) {
+            background: linear-gradient(135deg, #9b0926 0%, #9b1933 100%);
+            box-shadow: 0 4px 8px rgba(220, 20, 60, 0.4);
+            }
+        }
+        
+        .playing-text {
+            color: #6d0d20;
+            font-weight: bold;
+            font-size: 12px;
+        }
+        }
+    }
+    }
+}
+
+@media (max-width: 10px) {
+    .search-result {
+    ion-card {
+        ion-card-content {
+        .sprites-row {
+            grid-template-columns: 1fr;
+        }
+        }
+    }
+    }
+}
+
+.error-message {
+    padding: 20px;
+    text-align: center;
+    
+    p {
+    margin: 0;
+    font-size: 16px;
+    color: #dc143c;
+    font-weight: bold;
+    }
+}
+
+.loading-spinner {
+    display: flex;
+    justify-content: center;
+    padding: 40px 0;
+    
+    --color: #dc143c;
+}
+
+ion-searchbar {
+    --background: #ffffff;
+    --border-color: #691625;
+    --color: #3d3838;
+    border-bottom: 2px solid #68021c;
+    
+    &::placeholder {
+    color: #2e060e;
+    }
+}
+
+ion-header {
+    ion-toolbar {
+    --background: linear-gradient(135deg, #882a3b 0%, #4e0716 100%);
+    
+    ion-title {
+        color: rgb(255, 255, 255);
+        font-weight: bold;
+    }
+    }
+}
+
+ion-content {
+    --background: rgb(224, 224, 224);
+}

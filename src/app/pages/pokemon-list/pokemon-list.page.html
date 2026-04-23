@@ -1,0 +1,76 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Buscador de Pokémons</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <!-- Buscador -->
+  <ion-searchbar
+    placeholder="Buscar al Pokémon por nombre"
+    (ionInput)="searchPokemon($event)"
+    debounce="300"
+  ></ion-searchbar>
+
+  <!-- Resultado del búsqueda -->
+  <div *ngIf="searchResult" class="search-result">
+    <ion-card>
+      <img [src]="searchResult.image" alt="{{ searchResult.name }}" class="pokemon-image" />
+      <ion-card-content>
+        <h2>{{ searchResult.name | titlecase }}</h2>
+        <p><strong>ID:</strong> {{ searchResult.id }}</p>
+        <p><strong>Orden:</strong> {{ searchResult.order }}</p>
+        <p><strong>Especie:</strong> {{ searchResult.species | titlecase }}</p>
+        <p><strong>Forma por defecto:</strong> {{ searchResult.isDefault }}</p>
+        <p><strong>Tipos:</strong> {{ searchResult.types }}</p>
+        <p><strong>Abilities:</strong> {{ searchResult.abilities }}</p>
+        <p><strong>Formas:</strong> {{ searchResult.forms }}</p>
+        <p><strong>Altura:</strong> {{ searchResult.height / 10 }} m</p>
+        <p><strong>Peso:</strong> {{ searchResult.weight / 10 }} kg</p>
+        <p><strong>Experiencia Base:</strong> {{ searchResult.baseExperience }}</p>
+        <p><strong>HP:</strong> {{ searchResult.hp }}</p>
+        <p><strong>Ataque:</strong> {{ searchResult.attack }}</p>
+        <p><strong>Defensa:</strong> {{ searchResult.defense }}</p>
+        <p><strong>Ataque Especial:</strong> {{ searchResult.specialAttack }}</p>
+        <p><strong>Defensa Especial:</strong> {{ searchResult.specialDefense }}</p>
+        <p><strong>Velocidad:</strong> {{ searchResult.speed }}</p>
+        <p><strong>Movimientos:</strong> {{ searchResult.movesCount }}</p>
+        <p><strong>Versiones del juego:</strong> {{ searchResult.gameIndicesCount }}</p>
+        <p><strong>Objetos equipables:</strong> {{ searchResult.heldItemsCount }}</p>
+
+        <div class="sprites-row">
+          <div class="sprite-box" *ngIf="searchResult.shinyImage">
+            <p><strong>Forma shiny</strong></p>
+            <img [src]="searchResult.shinyImage" alt="{{ searchResult.name }} shiny" class="sprite-image" />
+          </div>
+          <div class="sprite-box" *ngIf="searchResult.shinyBackImage">
+            <p><strong>Shiny trasera</strong></p>
+            <img [src]="searchResult.shinyBackImage" alt="{{ searchResult.name }} shiny back" class="sprite-image" />
+          </div>
+        </div>
+        
+        <!-- Botón para reproducir el cry -->
+        <div class="cry-button-container">
+          <button 
+            ion-button 
+            (click)="playCry()" 
+            [disabled]="!searchResult.cry || isPlayingCry"
+            class="cry-button"
+          >
+            Reproducir grito del pokémon
+          </button>
+          <span *ngIf="isPlayingCry" class="playing-text">Reproduciendo grito...</span>
+        </div>
+      </ion-card-content>
+    </ion-card>
+  </div>
+
+  <!-- Mensaje si no hay resultado -->
+  <ion-text *ngIf="searchError" color="danger" class="error-message">
+    <p>{{ searchError }}</p>
+  </ion-text>
+
+  <!-- Spinner de carga -->
+  <ion-spinner *ngIf="loading" class="loading-spinner"></ion-spinner>
+
+</ion-content>
