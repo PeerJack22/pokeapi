@@ -52,8 +52,7 @@ export class PokemonListPage implements OnInit {
           name: response.name,
           species: response.species?.name,
           image: response.sprites.other['official-artwork'].front_default || response.sprites.front_default,
-          shinyImage:
-            response.sprites.other['official-artwork'].front_shiny || response.sprites.front_shiny,
+          shinyImage: response.sprites.front_shiny,
           backImage: response.sprites.back_default,
           shinyBackImage: response.sprites.back_shiny,
           types: response.types.map((t: any) => t.type.name).join(', '),
